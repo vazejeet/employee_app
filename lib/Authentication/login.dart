@@ -1,6 +1,3 @@
-
-
-
 // import 'package:employee_app/Authentication/profile.dart';
 // import 'package:employee_app/dashboard.dart';
 // import 'package:flutter/material.dart';
@@ -133,12 +130,10 @@
 //   }
 // }
 
-
-
 import 'package:employee_app/Authentication/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -164,23 +159,26 @@ class _LoginScreenState extends State<LoginScreen> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLoggedIn', true);
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Login Successful!"),
-            backgroundColor: Colors.green,
-          ),
+        
+          Get.snackbar(
+          "Success!",
+          "Login Successful!",
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
         );
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ProfilePage()),
         );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Invalid credentials"),
-            backgroundColor: Colors.red,
-          ),
+        Get.snackbar(
+          "Error",
+          "Invalid credentials",
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
         );
+       
+        
       }
     }
   }
@@ -195,7 +193,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: const Color(0xFFEFF4FA),
       body: Center(
         child: SingleChildScrollView(
@@ -204,11 +201,15 @@ class _LoginScreenState extends State<LoginScreen> {
             key: _formKey,
             child: Column(
               children: [
-                const Icon(Icons.account_circle, size: 100, color: Colors.blueAccent),
+                const Icon(Icons.account_circle,
+                    size: 100, color: Colors.blueAccent),
                 const SizedBox(height: 20),
                 const Text(
                   "Employee Login",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey),
                 ),
                 const SizedBox(height: 40),
                 TextFormField(
@@ -217,7 +218,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: "Username",
                     hintText: "Enter your username",
                     prefixIcon: const Icon(Icons.person),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -235,12 +237,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: "Enter your password",
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
-                      icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+                      icon: Icon(_obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
                       onPressed: () {
                         setState(() => _obscurePassword = !_obscurePassword);
                       },
                     ),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -254,12 +259,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton.icon(
-                    icon: const Icon(Icons.login),
-                    label: const Text("Login", style: TextStyle(fontSize: 18)),
+                    icon: const Icon(Icons.login,color: Colors.white),
+                    label: const Text("Login", style: TextStyle(fontSize: 18,color: Colors.white)),
                     onPressed: _login,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
                     ),
                   ),
                 ),

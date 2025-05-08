@@ -1,13 +1,14 @@
+import 'package:employee_app/Authentication/login.dart';
 import 'package:employee_app/Authentication/profile.dart';
-import 'package:employee_app/attendance.dart';
-import 'package:employee_app/cr_remark.dart';
-import 'package:employee_app/leave.dart';
+import 'package:employee_app/view/attendance.dart';
+import 'package:employee_app/view/cr_remark.dart';
+import 'package:employee_app/view/leave.dart';
 import 'package:employee_app/multilingual/language.dart';
-import 'package:employee_app/salary.dart';
+import 'package:employee_app/view/salary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// Add other imports as you build more pages
+
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -54,36 +55,29 @@ class CustomDrawer extends StatelessWidget {
             );
           }),
 
-          //  _buildDrawerItem(context, Icons.money, 'Attendance Details', () {
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (_) => const AttendanceDetailsPage()),
-          //   );
-          // }),
-          //  _buildDrawerItem(context, Icons.money, 'Cr remark', () {
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (_) => const CRRemarksPage()),
-          //   );
-          // }),
+           _buildDrawerItem(context, Icons.money, 'Attendance Details', () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AttendanceDetailsPage()),
+            );
+          }),
+           _buildDrawerItem(context, Icons.money, 'Cr remark', () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CRRemarksPage()),
+            );
+          }),
 
-         // const Divider(),
-          // _buildDrawerItem1(context, Icons.language, 'Language Translate', () {
-          //   Obx(() => IconButton(
-          //         icon: Icon(
-          //           langController.isMarathi.value
-          //               ? Icons.language
-          //               : Icons.language_outlined,
-          //         ),
-          //         onPressed: langController.toggleLanguage,
-          //         tooltip: 'Toggle Language',
-          //       ));
-          // }),
 
           
           const Divider(),
           _buildDrawerItem(context, Icons.logout, 'Logout', () {
-            Navigator.popUntil(context, (route) => route.isFirst);
+            // Navigator.popUntil(context, (route) => route.isFirst);
+            Get.offAll(()=>LoginScreen());
+           Get.snackbar("Logout", "User has been logged out",
+            backgroundColor: Colors.green,
+             colorText: Colors.white,
+             );
           }),
         ],
       ),
@@ -99,12 +93,5 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-   Widget _buildDrawerItem1(
-      BuildContext context, IconData icon, String title, VoidCallback onTap) {
-    return ListTile(
-      leading: Text(title),
-      title: Icon(Icons.language),
-      onTap: onTap,
-    );
-  }
+ 
 }

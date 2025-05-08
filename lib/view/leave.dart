@@ -16,16 +16,18 @@ class LeaveDetailsPage extends StatelessWidget {
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: AppBar(
-        title: Obx(() => Text(langController.translate('Leave Details'))),
+        title: Obx(() => Text(langController.translate('Leave Details'),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
         backgroundColor: Colors.teal.shade700,
         actions: [
           Obx(() => IconButton(
                 icon: Icon(langController.isMarathi.value
                     ? Icons.language
-                    : Icons.language_outlined),
+                    : Icons.language_outlined,color: Colors.white,),
                 onPressed: langController.toggleLanguage,
               )),
         ],
+        iconTheme: IconThemeData(color: Colors.white),
+
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -103,315 +103,78 @@
 //   }
 // }
 
-
-
-
-
-// import 'package:flutter/material.dart';
-
-
-
-// class ProfilePage extends StatefulWidget {
-//   @override
-//   _ProfilePageState createState() => _ProfilePageState();
-// }
-
-// class _ProfilePageState extends State<ProfilePage> {
-//   bool isMarathi = false; // Language toggle variable
-
-//   // Sample data (you can replace this with dynamic values later)
-//   final Map<String, String> englishData = {
-//     "Portfolio Name": "Shivaji More",
-//     "Employee Name": "Shivaji More",
-//     "Employee Name (Marathi)": "शिवाजी मोरे",
-//     "DOB": "01/01/1985",
-//     "Gender": "Male",
-//     "Mobile": "9876543210",
-//     "Email": "shivaji@domain.com",
-//     "Place of Birth": "Pune",
-//     "Identification Mark": "Mole on neck",
-//     "Caste": "Maratha",
-//     "Religion": "Hindu",
-//     "Handicapped": "No",
-//     "Blind": "No",
-//     "Photo": "Uploaded"
-//   };
-
-//   final Map<String, String> marathiData = {
-//     "Portfolio Name": "शिवाजी मोरे",
-//     "Employee Name": "शिवाजी मोरे",
-//     "Employee Name (Marathi)": "शिवाजी मोरे",
-//     "DOB": "01/01/1985",
-//     "Gender": "पुरुष",
-//     "Mobile": "9876543210",
-//     "Email": "shivaji@domain.com",
-//     "Place of Birth": "पुणे",
-//     "Identification Mark": "गळ्यावरील तळी",
-//     "Caste": "म्हाराष्ट्र",
-//     "Religion": "हिंदू",
-//     "Handicapped": "नाही",
-//     "Blind": "नाही",
-//     "Photo": "अपलोड केले"
-//   };
-
-//   // Helper function to build sections and fields
-//   Widget buildField(String title, String value) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 8.0),
-//       child: Row(
-//         children: [
-//           Expanded(child: Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
-//           Expanded(child: Text(value, style: TextStyle(fontSize: 16, color: Colors.grey))),
-//         ],
-//       ),
-//     );
-//   }
-
-//   // Helper function to build section title
-//   Widget buildSectionTitle(String title) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 16.0),
-//       child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final data = isMarathi ? marathiData : englishData;
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profile Page'),
-//         actions: [
-//           IconButton(
-//             icon: Icon(isMarathi ? Icons.language : Icons.language_outlined),
-//             onPressed: () {
-//               setState(() {
-//                 isMarathi = !isMarathi;
-//               });
-//             },
-//           ),
-//         ],
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: ListView(
-//           children: [
-//             buildSectionTitle(isMarathi ? "👤 वैयक्तिक तपशील" : "👤 Personal Details"),
-//             buildField(isMarathi ? "पोर्टफोलिओ नाव" : "Portfolio Name", data["Portfolio Name"]!),
-//             buildField(isMarathi ? "कर्मचारी नाव" : "Employee Name", data["Employee Name"]!),
-//             buildField(isMarathi ? "कर्मचारी नाव (मराठीत)" : "Employee Name (Marathi)", data["Employee Name (Marathi)"]!),
-//             buildField(isMarathi ? "जन्म तारीख" : "DOB", data["DOB"]!),
-//             buildField(isMarathi ? "लिंग" : "Gender", data["Gender"]!),
-//             buildField(isMarathi ? "मोबाईल" : "Mobile", data["Mobile"]!),
-//             buildField(isMarathi ? "ईमेल" : "Email", data["Email"]!),
-//             buildField(isMarathi ? "जन्मस्थान" : "Place of Birth", data["Place of Birth"]!),
-//             buildField(isMarathi ? "ओळख चिन्ह" : "Identification Mark", data["Identification Mark"]!),
-//             buildField(isMarathi ? "जात" : "Caste", data["Caste"]!),
-//             buildField(isMarathi ? "धर्म" : "Religion", data["Religion"]!),
-//             buildField(isMarathi ? "दिव्यांग आहे का?" : "Handicapped", data["Handicapped"]!),
-//             buildField(isMarathi ? "अंधत्व आहे का?" : "Blind", data["Blind"]!),
-//             buildField(isMarathi ? "छायाचित्र" : "Photo", data["Photo"]!),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Add logout functionality here
-//                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Logging out...")));
-//               },
-//               child: Text(isMarathi ? "लॉगआउट" : "Logout"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
-
 import 'package:employee_app/Authentication/login.dart';
 import 'package:employee_app/Drawer/drawer.dart';
 import 'package:employee_app/multilingual/language.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-
-// class ProfilePage extends StatefulWidget {
-//   @override
-//   _ProfilePageState createState() => _ProfilePageState();
-// }
-
-// class _ProfilePageState extends State<ProfilePage> {
-//   bool isMarathi = false;
-
-//   final Map<String, String> englishData = {
-//     "Portfolio Name": "Shivaji More",
-//     "Employee Name": "Shivaji More",
-//     "Employee Name (Marathi)": "शिवाजी मोरे",
-//     "DOB": "01/01/1985",
-//     "Gender": "Male",
-//     "Mobile": "9876543210",
-//     "Email": "shivaji@domain.com",
-//     "Place of Birth": "Pune",
-//     "Identification Mark": "Mole on neck",
-//     "Caste": "Maratha",
-//     "Religion": "Hindu",
-//     "Handicapped": "No",
-//     "Blind": "No",
-//     "Photo": "Uploaded"
-//   };
-
-//   final Map<String, String> marathiData = {
-//     "Portfolio Name": "शिवाजी मोरे",
-//     "Employee Name": "शिवाजी मोरे",
-//     "Employee Name (Marathi)": "शिवाजी मोरे",
-//     "DOB": "01/01/1985",
-//     "Gender": "पुरुष",
-//     "Mobile": "9876543210",
-//     "Email": "shivaji@domain.com",
-//     "Place of Birth": "पुणे",
-//     "Identification Mark": "गळ्यावरील तळी",
-//     "Caste": "म्हाराष्ट्र",
-//     "Religion": "हिंदू",
-//     "Handicapped": "नाही",
-//     "Blind": "नाही",
-//     "Photo": "अपलोड केले"
-//   };
-
-//   Widget buildField(String title, String value) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 8.0),
-//       child: Row(
-//         children: [
-//           Expanded(child: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
-//           Expanded(child: Text(value, style: const TextStyle(fontSize: 16, color: Colors.grey))),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget buildSectionTitle(String title) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 16.0),
-//       child: Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-//     );
-//   }
-
-//   Future<void> _logout() async {
-//     final prefs = await SharedPreferences.getInstance();
-//     await prefs.setBool('isLoggedIn', false);
-
-//     Navigator.pushAndRemoveUntil(
-//       context,
-//       MaterialPageRoute(builder: (_) => const LoginScreen()),
-//       (route) => false,
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final data = isMarathi ? marathiData : englishData;
-
-//     return Scaffold(
-//       drawer: const CustomDrawer(),
-
-//       appBar: AppBar(
-//         title: const Text('Profile Page'),
-//         actions: [
-//           IconButton(
-//             icon: Icon(isMarathi ? Icons.language : Icons.language_outlined),
-//             onPressed: () => setState(() => isMarathi = !isMarathi),
-//           ),
-//         ],
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: ListView(
-//           children: [
-//             buildSectionTitle(isMarathi ? "👤 वैयक्तिक तपशील" : "👤 Personal Details"),
-//             ...data.entries.map((e) => buildField(isMarathi ? _translate(e.key) : e.key, e.value)),
-//             const SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: _logout,
-//               child: Text(isMarathi ? "लॉगआउट" : "Logout"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   String _translate(String key) {
-//     final translations = {
-//       "Portfolio Name": "पोर्टफोलिओ नाव",
-//       "Employee Name": "कर्मचारी नाव",
-//       "Employee Name (Marathi)": "कर्मचारी नाव (मराठीत)",
-//       "DOB": "जन्म तारीख",
-//       "Gender": "लिंग",
-//       "Mobile": "मोबाईल",
-//       "Email": "ईमेल",
-//       "Place of Birth": "जन्मस्थान",
-//       "Identification Mark": "ओळख चिन्ह",
-//       "Caste": "जात",
-//       "Religion": "धर्म",
-//       "Handicapped": "दिव्यांग आहे का?",
-//       "Blind": "अंधत्व आहे का?",
-//       "Photo": "छायाचित्र"
-//     };
-//     return translations[key] ?? key;
-//   }
-// }
-
-
-
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class ProfilePage extends StatelessWidget {
   final LanguageController languageController = Get.put(LanguageController());
 
-  ProfilePage({super.key});
-
-  void _logout() {
-    // Add your logout logic here
-    Get.snackbar("Logout", "User has been logged out");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     backgroundColor:   Colors.teal.shade100,
       appBar: AppBar(
-        title: Obx(() => Text(languageController.translate("Profile Page"))),
-        backgroundColor: Colors.teal.shade700,
+        backgroundColor:   Colors.teal.shade500,
+        title: Text(languageController.translate("Profile"),style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white),
+
       ),
        drawer: const CustomDrawer(),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Obx(() => ListView(
-              children: [
-                _buildInfoRow("Portfolio Name", "Civil Engineering"),
-                _buildInfoRow("Employee Name", "Rahul Patil"),
-                _buildInfoRow("Employee Name (Marathi)", "राहुल पाटील"),
-                _buildInfoRow("DOB", "12/07/1990"),
-                _buildInfoRow("Gender", "Male"),
-                _buildInfoRow("Mobile", "9876543210"),
-                _buildInfoRow("Email", "rahul@example.com"),
-                _buildInfoRow("Place of Birth", "Pune"),
-                _buildInfoRow("Identification Mark", "Mole on left cheek"),
-                _buildInfoRow("Caste", "Maratha"),
-                _buildInfoRow("Religion", "Hindu"),
-                _buildInfoRow("Handicapped", "No"),
-                _buildInfoRow("Blind", "No"),
-                _buildInfoRow("Photo", "Available"),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: _logout,
-                  child: Text(languageController.translate("Logout")),
-                ),
-              ],
-            )),
+        child: Column(
+          children: [
+            Card(
+              //color: Colors.teal.shade500,
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Obx(() => ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        _buildInfoRow("Portfolio Name", "Civil Engineering"),
+                        Divider(),
+                        _buildInfoRow("Employee Name", "Rahul Patil"),
+                        Divider(),
+                        _buildInfoRow("Employee Name (Marathi)", "राहुल पाटील"),
+                        Divider(),
+                        _buildInfoRow("DOB", "12/07/1990"),
+                        Divider(),
+                        _buildInfoRow("Gender", "Male"),
+                        Divider(),
+                        _buildInfoRow("Mobile", "9876543210"),
+                        Divider(),
+                        _buildInfoRow("Email", "rahul@example.com"),
+                        Divider(),
+                        _buildInfoRow("Place of Birth", "Pune"),
+                        Divider(),
+                        _buildInfoRow(
+                            "Identification Mark", "Mole on left cheek"),
+                        Divider(),
+                        _buildInfoRow("Caste", "Maratha"),
+                        Divider(),
+                        _buildInfoRow("Religion", "Hindu"),
+                        Divider(),
+                        _buildInfoRow("Handicapped", "No"),
+                        Divider(),
+                        _buildInfoRow("Blind", "No"),
+                        Divider(),
+                        _buildInfoRow("Photo", "Available"),
+                      ],
+                    )),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -420,10 +183,27 @@ class ProfilePage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: Text(languageController.translate(key))),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Expanded(
+            flex: 2,
+            child: Text(
+              languageController.translate(key),
+              style: TextStyle(fontSize: 16,),
+            ),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            flex: 3,
+            child: Text(
+              value,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+               
+              ),
+            ),
+          ),
         ],
       ),
     );
